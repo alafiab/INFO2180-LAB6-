@@ -6,7 +6,8 @@ window.onload = function()
         e.preventDefault();
         var b = new XMLHttpRequest();
         b.onreadystatechange = c;
-        b.open("Get","request.php?q=definition");
+        var url = "request.php?q="+document.getElementById("col").value;
+        b.open("Get", url);
         b.send();
         
         function c()
@@ -15,9 +16,10 @@ window.onload = function()
             {
                 if(b.status === 200)
                 {
-                    alert(b.responseText);
+                    var show = b.responseText;
+                    document.getElementById("result").innerHTML = show;
                 }
             }
         }
-    }
-)};
+    });
+};
