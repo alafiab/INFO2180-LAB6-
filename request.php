@@ -1,8 +1,43 @@
 <?php
 
-// accept a term (keyword)
-// respond with a value
+//accept a term (keyword)
+//respond with a value
 
+if(isset($_GET['all']) == true)
+{
+$xmldata = '<?xml version="1.0" encoding="UTF-8"?>
+<entries>
+    <definition title="Definition" author="Alafia">
+        A statement of the exact meaning of a word, especially in a dictionary.
+    </definition>
+    
+    <definition title="Bar" author= "Brittannis">
+        A place that sells alcholic beverages.
+    </definition>
+    
+    <definition title="Ajax" author= "Debbie">
+        Technique which involves the use of javascript and xml (or JSON).
+    </definition>
+    
+    <definition title="HTML" author="Jhevaughn">
+        The standard markup language for creating web pages and web applications.
+    </definition>
+    
+    <definition title="CSS" author="Anthony">
+        A style sheet language used for describing the presentation of a document written in a markup language.
+    </definition>
+    
+     <definition title="Javascript" author="Amelia">
+        A lightweight, interpreted programming language with first-class functions that adds interactivity to your website.
+    </definition>
+    
+     <definition title="PHP" author="Britani">
+        A server-side scripting language, and a powerful tool for making dynamic and interactive websites.
+    </definition>
+</entries>';
+    }
+else 
+{
 $query = $_GET['q'];
 $definition = [
     "definition" => "A statement of the exact meaning of a word, especially in a dictionary.",
@@ -16,3 +51,10 @@ $definition = [
 
 print "<h3>" . strtoupper($query) . "</h3>";
 print "<p>" . $definition[$query] . "</p>";
+}
+
+header('Content-Type: text/xml');
+$xmlOutput = new SimpleXMLElement($xmldata);
+echo $xmlOutput->asXML();
+
+
